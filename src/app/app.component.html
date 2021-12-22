@@ -1,0 +1,18 @@
+<div>
+  <div class="container">
+    <ngx-spinner ><p style="color: white; font-size: 20px;">Loading....</p></ngx-spinner>
+    <img class="image" src="../assets/images/covid19_heading.png" alt="COVID-19" />
+    <div class="display-cards">
+      <app-card [cardType]='"In"' [data]='confirmed'  class="card-elm"></app-card>
+      <app-card [cardType]='"Re"' [data]='recovered' class="card-elm"></app-card>
+      <app-card [cardType]='"De"' [data]='deaths' class="card-elm"></app-card>
+    </div>
+    <div class="country-selector">
+      <app-country-selector class="selector" (countryChange)="fetchData($event)"></app-country-selector>
+    </div>
+    <div class="display-cards" *ngIf="chartData">
+   <app-chart [type]='chartType' [data]='chartData'></app-chart>
+    </div>
+  </div>
+</div>
+
