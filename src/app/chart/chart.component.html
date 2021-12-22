@@ -1,0 +1,6 @@
+<div *ngIf="type === 'L'">
+  <p-chart type="line" [data]="lineChartData" [options]="basicOptions" ></p-chart>
+</div>
+<div  *ngIf="type === 'B'">
+  <p-chart type="bar" [data]="barchartData" [options]="basicOptions"></p-chart>
+</div>
