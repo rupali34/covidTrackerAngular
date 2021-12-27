@@ -20,7 +20,6 @@ export class ChartComponent implements OnInit, OnChanges {
      * method to set data on input changes i.e 
      */
     ngOnChanges() {
-        console.log(this.data, this.type);
         this.initialData();
     }
     /**
@@ -34,7 +33,6 @@ export class ChartComponent implements OnInit, OnChanges {
      */
     initialData() {
         let country = this.data.country ? this.data.country : '';
-        console.log(this.data, this.type);
         if (this.type === "L") {
             this.lineChartData = {
                 labels: this.data.map((data: any) => data.date),
@@ -56,7 +54,6 @@ export class ChartComponent implements OnInit, OnChanges {
                     }
                 ]
             };
-            console.log(this.lineChartData);
             this.basicOptions = {
                 plugins: {
                     legend: {

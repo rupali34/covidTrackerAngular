@@ -1,1 +1,13 @@
-<p>errormessage works!</p>
+<h2 class="dialog-heading" mat-dialog-title>An Error Occured</h2>
+
+<mat-dialog-content class="mat-typography dialog-conten">
+    <p> {{ data.error.message}}
+        <a class="more-less-content" *ngIf="!showMoreContent && morecontent" (click)="moreContent()">more...</a>
+        <a class="more-less-content" *ngIf="showMoreContent" (click)="lessContent()">less...</a>
+    </p>
+    <p *ngIf="showMoreContent">{{morecontent}} </p>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+    <button mat-dialog-close mat-raised-button color="primary" class="close-but"> Close </button>
+</mat-dialog-actions>

@@ -29,7 +29,6 @@ export class CountrySelectorComponent implements OnInit {
    * @param event Method to get call on country change
    */
   oncountryChange(event: any) {
-    console.log(event);
     let countryName = '';
     if (event.value) {
       countryName = event.value.name;

@@ -18,7 +18,7 @@ export class GlobalErrorHandlerService implements ErrorHandler {
     if (error instanceof HttpErrorResponse) {
       return;
     }
-    this.covidDataService.showErrorDialog(error);
+    this.covidDataService.showErrorDialog({error, httpType:false, flag: true});
   }
 
 }

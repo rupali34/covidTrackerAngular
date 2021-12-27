@@ -3,6 +3,7 @@ import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpErrorResponse
 import { Observable, throwError } from 'rxjs';
 import { finalize, catchError } from 'rxjs/operators';
 import { NgxSpinnerService } from "ngx-spinner";
+import { CovidDataService } from './covid-data.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ import { NgxSpinnerService } from "ngx-spinner";
 export class GlobalHttpInterceptorService implements HttpInterceptor {
   /** Variable to hold req counts */
   reqCount = 0;
-  constructor(private spinner: NgxSpinnerService) { }
+  constructor(private spinner: NgxSpinnerService, private covidDataService: CovidDataService) { }
   /**
    * 
    * @param req 
@@ -21,8 +22,6 @@ export class GlobalHttpInterceptorService implements HttpInterceptor {
     this.reqCount++;
     this.showSpinner();
     return next.handle(req).pipe(catchError((err) => {
-      // console.error(err);
-      alert('Oh! Error occured');
       this.handleError(err);
       return throwError(err);    //Rethrow error it back to component
     }), finalize(() => {
@@ -41,7 +40,7 @@ export class GlobalHttpInterceptorService implements HttpInterceptor {
       if (error.error instanceof ErrorEvent) {
         console.error("Error Event");
       } else {
-        console.log(`error status : `, error);
+        this.covidDataService.showErrorDialog({error, httpType :true,  flag: true});
       }
     }
     else {

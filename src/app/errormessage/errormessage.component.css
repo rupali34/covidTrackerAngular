@@ -1,0 +1,17 @@
+.dialog-heading {
+    color: red;
+    align-items: center;
+    text-align: center;
+}
+
+.dialog-conten {
+    padding: 20px;
+}
+
+.close-but {
+    margin: auto;
+}
+.more-less-content {
+    margin-left: 10px;
+    color: #3f51b5;
+}

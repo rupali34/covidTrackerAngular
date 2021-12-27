@@ -23,7 +23,8 @@ import { ChartModule } from 'primeng/chart';
 import { ErrormessageComponent } from './errormessage/errormessage.component';
 import { NgxSpinnerModule } from "ngx-spinner";
 import {MatDialogModule} from '@angular/material/dialog';
-import {ToastModule} from 'primeng/toast';
+// import {ToastModule} from 'primeng/toast';
+import { MatButtonModule } from '@angular/material/button';
 
 // import {DynamicDialogModule} from 'primeng/dynamicdialog';
 // import {DialogModule} from 'primeng/dialog';
@@ -40,7 +41,7 @@ const importArray = [
   ChartModule,
   NgxSpinnerModule,
   MatDialogModule,
-  ToastModule
+  MatButtonModule
 ];
 @NgModule({
   declarations: [

@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { CovidDataService } from './shared/covid-data.service';
 import { Title } from '@angular/platform-browser';
-import { DialogService } from 'primeng/dynamicdialog';
 import { ErrormessageComponent } from './errormessage/errormessage.component';
+import { MatDialog } from '@angular/material/dialog';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
-  providers: [DialogService]
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
   /** Variable to hold title of page */
@@ -26,8 +25,9 @@ export class AppComponent {
   chartData: any;
   /** Variable to hold chart type */
   chartType = 'L';
-  c:any;
-  constructor(public covidDataService: CovidDataService, private titleService: Title, public dialogService: DialogService) {
+  constructor(public dialog: MatDialog,
+    public covidDataService: CovidDataService,
+    private titleService: Title) {
     this.covidDataService.showErrorObj.subscribe(errorData => this.showErrorDialog(errorData));
   }
   /**
@@ -35,7 +35,6 @@ export class AppComponent {
    */
   ngOnInit() {
     this.fetchData();
-    // console.log(this.c.u);
   }
   /**
    * 
@@ -50,7 +49,6 @@ export class AppComponent {
    */
   fetchData(country?: any) {
     this.covidDataService.getCovidData(country).subscribe(result => {
-      console.log(result);
       const { confirmed, recovered, deaths, lastUpdate } = result;
       this.confirmed = {
         count: confirmed.value,
@@ -64,7 +62,6 @@ export class AppComponent {
         count: deaths.value,
         lastUpdate
       };
-      console.log(confirmed, recovered, deaths, lastUpdate);
       if (!country || country === '') {
         this.setPageTitle(this.title + 'Global');
         this.chartType = 'L';
@@ -90,7 +87,6 @@ export class AppComponent {
       this.chartData = data.map((val: any) => {
         return { confirmed: val.confirmed.total, deaths: val.deaths.total, date: val.reportDate };
       })
-      console.log(this.chartData);
     });
   }
 
@@ -99,13 +95,11 @@ export class AppComponent {
    * @param err Mathod to show error alert
    */
   showErrorDialog(err: any) {
-    console.log(err);
     if (err.flag) {
-      alert(err.error.message);
-      const ref = this.dialogService.open(ErrormessageComponent, {
-        header: 'Choose a Car',
-        width: '70%'
-    });
+      this.dialog.open(ErrormessageComponent, {
+        data: err,
+        width: '500px',
+      });
     }
   }
 

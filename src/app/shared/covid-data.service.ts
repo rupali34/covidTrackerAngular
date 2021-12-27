@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
-import { ErrormessageComponent } from '../errormessage/errormessage.component';
 const URL = 'https://covid19.mathdro.id/api';
 
 @Injectable({
@@ -49,10 +48,7 @@ export class CovidDataService {
    * @param error Method to show error dialog
    */
   showErrorDialog(error: any) {
-    let result = {
-      error,
-      flag: true
-    };
+    let result = error;
     this.showError.next(result);
   }
 
