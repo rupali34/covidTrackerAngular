@@ -1,15 +1,24 @@
 import { Injectable, ErrorHandler } from '@angular/core';
 import { CovidDataService } from './covid-data.service';
+import { HttpErrorResponse } from 'node_modules/@angular/common/http';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class GlobalErrorHandlerService implements ErrorHandler {
 
-  constructor(private covidDataService : CovidDataService) { }
+  constructor(private covidDataService: CovidDataService) { }
+  /**
+   * 
+   * @param error Method to handle error
+   * @returns 
+   */
   handleError(error: any): void {
-      this.covidDataService.showErrorDialog(error);
-      // console.error('An error occured', error.message)
+    if (error instanceof HttpErrorResponse) {
+      return;
+    }
+    this.covidDataService.showErrorDialog(error);
   }
-  
+
 }

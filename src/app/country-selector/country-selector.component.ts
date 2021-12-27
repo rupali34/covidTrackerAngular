@@ -7,25 +7,34 @@ import { CovidDataService } from '../shared/covid-data.service';
   styleUrls: ['./country-selector.component.css']
 })
 export class CountrySelectorComponent implements OnInit {
+  /** output variable to emit country change event */
   @Output() countryChange = new EventEmitter<any>();
-  constructor(public covidDataService: CovidDataService) { }
+  /** variable to hold selected country */
   selectedCountry: any;
-  countries: any = [{name:'India'}, {name:'UK'}, {name: 'Global'}];
+  /** variable to hold countries list */
+  countries: any = [{ name: 'India' }, { name: 'UK' }, { name: 'Global' }];
+
+  constructor(public covidDataService: CovidDataService) { }
+  /**
+   * Methos to set initia data
+   */
   ngOnInit(): void {
     this.selectedCountry = '';
-    this.covidDataService.getcountries().subscribe(result=>{
-      // console.log(result);
+    this.covidDataService.getcountries().subscribe(result => {
       this.countries = result.countries;
     });
   }
-
-  oncountryChange(event:any) {
+  /**
+   * 
+   * @param event Method to get call on country change
+   */
+  oncountryChange(event: any) {
     console.log(event);
     let countryName = '';
-    if(event.value) {
+    if (event.value) {
       countryName = event.value.name;
     }
-   this.countryChange.emit(countryName);
+    this.countryChange.emit(countryName);
   }
 
 }

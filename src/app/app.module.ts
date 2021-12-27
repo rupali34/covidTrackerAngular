@@ -1,5 +1,5 @@
 import { ErrorHandler, NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Title } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -50,8 +50,8 @@ const importArray = [
     CountrySelectorComponent,
     ErrormessageComponent,
   ],
-  imports: [ ...importArray, MatSelectModule],
-  providers: [
+  imports: [ ...importArray, MatSelectModule, BrowserAnimationsModule],
+  providers: [Title,
     {provide:HTTP_INTERCEPTORS, useClass: GlobalHttpInterceptorService, multi: true},
     {provide:ErrorHandler, useClass:GlobalErrorHandlerService}],
   bootstrap: [AppComponent],
