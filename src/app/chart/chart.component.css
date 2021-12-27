@@ -1,0 +1,7 @@
+p {
+    font-family: Lato;
+  }
+  ::ng-deep canvas {
+    height: 500px;
+    width: 1000px;
+  }

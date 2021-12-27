@@ -1,0 +1,22 @@
+<mat-card class="example-card" *ngIf="data">
+    <mat-card-content>
+        <p class="card-heading-p">
+            {{getHeading()}}
+        </p>
+        <h5 class="count-p">
+            <span>{{data.count | number}}</span>
+        </h5>
+
+        <p class="card-heading-p">
+            {{data.lastUpdate | date: 'ccc MMM dd YYYY'}}
+        </p>
+        <p class="sub-text-p">
+            Number of active cases of COVID-19.
+        </p>
+    </mat-card-content>
+    <mat-card-footer>
+        <div class="bottom-border"
+            [ngStyle]="{'background-color': cardType==='In'? 'rgba(0,0,255,.5)': cardType==='Re' ? 'rgba(0,255,0,.5)':'rgba(255,0,0,.5)'}">
+        </div>
+    </mat-card-footer>
+</mat-card>
